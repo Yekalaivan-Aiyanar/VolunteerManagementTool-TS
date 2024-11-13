@@ -1,0 +1,47 @@
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.navbar {
+    background-color: rgb(71,53,49);
+    height: 80px;
+    display: flex;
+}
+.navbar_buttons:hover{
+    background-color: rgb(218,147,120);
+    transition: all 0.3s ease-in-out;
+}
+.navbar_buttons {
+    display: flex;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rgb(188,6,28);
+}
+
+/*----------- footer section -----------*/
+.footer{
+    background-color: bisque;
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    
+}
+.footer_sections {
+    margin: 20px 5%;
+    text-align: left;
+}
+
+.fa-brands{
+    color: brown;
+    padding: 5px
+}
+.socialmedialink{
+    color: #fff;
+    justify-self: flex;
+  flex-direction: row;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  align-items: center;
+}
