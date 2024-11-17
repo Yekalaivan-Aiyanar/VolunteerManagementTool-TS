@@ -3,13 +3,44 @@ const mongoose = require('mongoose')
 const path = require('path')
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(express.static(__dirname));
+app.use(express.urlencoded({extended:true}))
+
+mongoose.connect('mongodb://localhost:27017/rts')
+const db = mongoose.connection
+db.once('open', ()=>{
+    console.log("Connection Successful")
+})
+
+const userSchema = new mongoose.Schema({
+    email:String,
+    password:String,
+    role:String,
+})
+
+const Users = mongoose.model("data", userSchema)
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname, "public", "form.html"))
 })
+
+app.post('/post', async (req,res)=>{
+    const {email, password,role} = req.body;
+    const user = new Users({
+        email,
+        password,
+        role
+    })
+    await user.save()
+    console.log(user)
+    res.send("Form submission successful")
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+
 
 
 
