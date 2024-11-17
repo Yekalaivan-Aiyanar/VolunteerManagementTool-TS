@@ -12,6 +12,7 @@
 }
 .navbar_buttons {
     display: flex;
+    flex-direction: column;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: rgb(188,6,28);
