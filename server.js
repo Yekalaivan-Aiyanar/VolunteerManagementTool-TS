@@ -1,4 +1,114 @@
-const express = require('express')
+const express = require("express");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
+const path = require("path");
+const PORT = process.env.PORT || 3000;
+
+mongoose.connect("mongodb://localhost:27017/rts");
+
+const contactSchema = {
+    email: String,
+    password: String,
+    role: String,
+};
+
+const Contact = mongoose.model("Contact", contactSchema);
+
+const app = express();
+
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get("/contact", (req, res) => {
+    res.render("contact");
+});
+
+app.post("/contact", async (req, res) => {
+    console.log("Form data recieved:", req.body.email);
+    const contact = new Contact({
+        email: req.body.email,
+        password: req.body.password,
+        role: req.body.role
+    });
+
+    try {
+        await contact.save();
+        console.log("Saved contact: ", contact)
+        res.render("contact");
+    } catch (err) {
+        console.error("Error saving contact:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+
+
+/*const express = require("express");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
+const PORT = process.env.PORT || 3000;
+const bodyParser = require("body-parser");
+
+mongoose.connect(
+"mongodb://localhost:27017/rts",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+
+const contactSchema = {
+    email:String,
+    password:String,
+    role:String,
+};
+
+const Contact =
+    mongoose.model("Contact", contactSchema);
+
+const app = express();
+
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get("/contact",
+    function (req, res) {
+        res.render("contact");
+    });
+
+app.post("/contact",
+    function (req, res) {
+        console.log(req.body.email);
+        const contact = new Contact({
+            email:req.body.email,
+            password:req.body.password,
+            role:req.body.role,
+        });
+        contact.save(function (err) {
+            if (err) {
+                throw err;
+            } else {
+                res.render("contact");
+            }
+        });
+    });
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+*/
+
+/*const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const PORT = process.env.PORT || 3000;
@@ -6,7 +116,9 @@ const app = express();
 app.use(express.static(__dirname));
 app.use(express.urlencoded({extended:true}))
 
-mongoose.connect('mongodb://localhost:27017/rts')
+DB_URL="mongodb://localhost:27017/rts"
+
+mongoose.connect(DB_URL)
 const db = mongoose.connection
 db.once('open', ()=>{
     console.log("Connection Successful")
@@ -41,11 +153,9 @@ app.listen(PORT, () => {
 });
 
 
+*/
 
-
-
-
-
+/*2ndTRY*/
 
 /*
 const express = require('express');
