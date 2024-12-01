@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up!</title>
+    <title>Login!</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/5edc195db1.js" crossorigin="anonymous"></script>
 </head>
@@ -31,30 +31,24 @@
         </div>
     </nav>
     <div class="container">
-        <form action="/contact" method="POST" class=".form">
-            <label class="form_label" for="first_name">First Name: </label>
-            <input class="form_input" type="text" id="first_name" name="first_name">
-            <!--first_name-->
-            <label class="form_label" for="last_name">Last Name: </label>
-            <input class="form_input" type="text" id="last_name" name="last_name">
-            <!--last_name-->
-            <label class="form_label" for="email">Email: </label>
+        <form action="/submit-login" method="POST" class=".form">
+            <label class="form_label" for="email">Email:</label>
             <input class="form_input" type="text" id="email" name="email">
             <!--email-->
-            <label class="form_label" for="Password">Password: </label>
+            <label class="form_label" for="Password">Password:</label>
             <input class="form_input" type="text" id="password" name="password">
             <!--password-->
-            <label class="form_label" for="role">Role: </label>
-            <select class="form" name="role" id="role">
-                <option value="Teacher">Teacher</option>
-                <option value="Teacher Assistant">Teacher Assistant</option>
-                <option value="Student Volunteer">Student Volunteer</option>
-                <option value="Parent Volunteer">Parent Volunteer</option>
-                <option value="Other">Other</option>
-            </select>
-            <!--role-->
             <button class="submit_button" type="submit">Submit</button>
         </form>
+
+        <script> 
+            const urlParams = new URLSearchParams(window.location.search); 
+            const error = urlParams.get('error'); 
+            if (error) {  
+                alert('Invalid email or password. Please try again.');
+                window.location.href = '/login.html';
+            } 
+        </script>
     </div>
 
 

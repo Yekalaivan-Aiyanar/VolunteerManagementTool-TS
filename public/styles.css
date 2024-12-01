@@ -1,40 +1,192 @@
 * {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
+body, html { margin: 0; padding: 0; border: 0; width: 100%; overflow-x: hidden; }
+/*------------header----------*/
 .navbar {
-    background-color: rgb(71,53,49);
-    height: 80px;
-    display: flex;
+  background: #46332e;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
-.navbar_buttons:hover{
-    background-color: rgb(218,147,120);
-    transition: all 0.3s ease-in-out;
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  /* first digit is top and bottom, 2nd one is left and right */
+  margin: 0 auto;
+  padding: 0 50px;
 }
-.navbar_buttons {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
-    border-radius: 4px;
-    background-color: rgb(188,6,28);
+#navbar__logo {
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-decoration-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+}
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+.navbar__item {
+  height: 80px;
+}
+.navbar__links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+}
+.navbar__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  width: 100%;
+}
+.navbarbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background: #f77062;
+  color: #fff;
+}
+.button:hover {
+  background-color: #4837ff;
+  transition: all 0.3s ease;
+}
+.navbar__links:hover {
+  color: #f77062;
+  transition: all 0.3s ease;
 }
 
+nav ul li {
+    display: inline;
+  }
+  nav ul li a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  nav ul li a:hover {
+    background-color: #575757;
+  }
+/*--------------body section---------*/
+.slideshow {
+    max-width:100%;
+    position: relative;
+    margin: auto;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.mySlides {
+    display: none;
+    position: relative;
+}
+.img::after{
+    background-color: rgba(0, 0, 0, 10);
+    z-index: 1;
+}
+img {
+    vertical-align: middle;
+    height: 500px;
+    object-fit: cover;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
 /*----------- footer section -----------*/
 .footer{
-    background-color: bisque;
+    background-color: #46332e;
     padding: 5rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    
 }
 .footer_sections {
     margin: 20px 5%;
     text-align: left;
+    color: white;
 }
 
 .fa-brands{
-    color: brown;
+    color: rgb(255, 255, 255);
     padding: 5px
 }
 .socialmedialink{
@@ -83,4 +235,18 @@
     border: none;
     border-radius: 10%;
     display:flex;
+}
+/*------------------user.html dashboard--------*/
+.flex-dash {
+    display: flex;
+    background-color: rgb(207, 207, 207);
+    border: none;
+    border-radius: 5%;
+}
+
+.flex-dash > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
 }

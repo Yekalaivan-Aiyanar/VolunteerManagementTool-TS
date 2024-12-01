@@ -2,11 +2,14 @@ const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const path = require("path");
+const bodyParser = require("body-parser")
 const PORT = process.env.PORT || 3000;
 
 mongoose.connect("mongodb://localhost:27017/rts");
 
 const contactSchema = {
+    first_name: String,
+    last_name: String,
     email: String,
     password: String,
     role: String,
@@ -23,10 +26,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/contact", (req, res) => {
     res.render("contact");
 });
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard", { user: req.user });
+});
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
 
 app.post("/contact", async (req, res) => {
-    console.log("Form data recieved:", req.body.email);
+    //console.log("Form data recieved:", req.body.email);
     const contact = new Contact({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
         role: req.body.role
@@ -34,13 +45,32 @@ app.post("/contact", async (req, res) => {
 
     try {
         await contact.save();
-        console.log("Saved contact: ", contact)
-        res.render("contact");
+        //console.log("Saved contact: ", contact)
+        res.render("dashboard", { user: contact });
     } catch (err) {
         console.error("Error saving contact:", err);
         res.status(500).send("Internal Server Error");
     }
 });
+
+app.post('/submit-login', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    try {
+        const user = await Contact.findOne({ email: email, password: password }); 
+        if (user) { 
+            res.render("/dashboard"), { user: contact };
+        } 
+        else { 
+            res.redirect("/login?error=1");
+        }
+
+    } catch (err) { 
+        console.error("Error during login:", err); res.status(500).send("Internal Server Error"); 
+    }
+
+ });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

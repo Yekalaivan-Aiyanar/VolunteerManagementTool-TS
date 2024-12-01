@@ -9,18 +9,85 @@
 </head>
 <body>
     <nav class="navbar">
-        <ul>
-            <li class="navbar_buttons">
-                <a href="/index.html">Home</a>
-            </li>
-            <li class="navbar_buttons">
-                <a href="/form.html">Form</a>
-            </li>
-        </ul>
+        <div class="navbar__container">
+            <a href="./index.html" id="navbar__logo">RTS - Volunteer Management</a>
+            <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="https://www.catamilacademy.org/registration.html" class="navbar__links">Enroll</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="./login.html" class="navbar__links">Login</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="./form.html" class="navbarbutton">Sign Up</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <!--********************BODY SECTION******************-->
+    <div class="slideshow">
+        <div class="slideshow-container">
 
-    
+            <div class="mySlides fade">
+              <img src="https://i.ytimg.com/vi/2enXc1XS5dM/maxresdefault.jpg" style="width:100%">
+              <div class="text">Caption Text</div>
+            </div>
+            
+            <div class="mySlides fade">
+              <img src="https://i.ytimg.com/vi/PC3jYD-OfcI/maxresdefault.jpg" style="width:100%">
+              <div class="text">Caption Two</div>
+            </div>
+            
+            <div class="mySlides fade">
+              <img src="https://i.ytimg.com/vi/cwCwkIUX-zs/maxresdefault.jpg" style="width:100%">
+              <div class="text"></div>
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+            
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+    </div>
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
     <!--********************FOOTER SECTION******************-->
     <div class="footer">
         <div class="footer_sections">
